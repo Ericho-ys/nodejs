@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>首页</title>
+</head>
+
+<body>
+    <div id="get">获取</div>
+    <div id="list"></div>
+</body>
+<script>
+    var getDom = document.querySelector("#get");
+    var list = document.querySelector("#list");
+    getDom.onclick = function () {
+        ajax("POST", "http://127.0.0.1:3000/regist", function (res) {
+            var res = JSON.parse(res);
+            var html = "<ul>";
+            for (var i = 0; i < res.result.length; i++) {
+                html +=
+                    "<li>" +
+                    "<a href=" +
+                    res.result[i].url +
+                    ">" +
+                    res.result[i].name +
+                    "</a>" +
+                    "</li>";
+            }
+            html += "</ul>";
+            list.innerHTML = html;
+        });
+    };
+
+    function ajax(type, url, cb) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("post", url, true);
+        xhr.setRequestHeader("Content-Type",
+            "application/json;charset=UTF-8"); // koa-bodyparse 不能解析text/plain，改成application/json
+        xhr.send(
+            JSON.stringify({
+                username: "dy",
+                password: "123456",
+            })
+        );
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                // HTTP 状态在 200-300 之间表示请求成功
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    cb(xhr.responseText);
+                }
+            }
+        };
+    }
+</script>
+
+</html>

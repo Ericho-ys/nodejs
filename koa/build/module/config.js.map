@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/module/config.js"],"names":["url","datebaseName"],"mappings":";;;;;;AAAA,IAAMA,GAAG,GAAG,2BAAZ;;AACA,IAAMC,YAAY,GAAG,SAArB","sourcesContent":["const url = \"mongodb://localhost:27017\"\r\nconst datebaseName = \"nodeDev\"\r\n\r\nexport {\r\n    url,\r\n    datebaseName\r\n}"],"file":"config.js"}
