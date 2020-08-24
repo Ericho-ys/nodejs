@@ -32,6 +32,7 @@ class Db {
     async findOne(collectionName, json = {}) {
         await Db.getDbInstance.call(this)
         const result = this.db.collection(collectionName).findOne(json)
+        return result
     }
     async insertOne(collectionName, doc = {}) {
         try {

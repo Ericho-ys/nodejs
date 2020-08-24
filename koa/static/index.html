@@ -8,36 +8,35 @@
 </head>
 
 <body>
+    <div id="login">登录</div>
     <div id="get">获取</div>
-    <div id="list"></div>
+
 </body>
 <script>
     var getDom = document.querySelector("#get");
-    var list = document.querySelector("#list");
+    var get = document.querySelector("#get");
     getDom.onclick = function () {
         ajax("POST", "http://127.0.0.1:3000/regist", function (res) {
             var res = JSON.parse(res);
-            var html = "<ul>";
-            for (var i = 0; i < res.result.length; i++) {
-                html +=
-                    "<li>" +
-                    "<a href=" +
-                    res.result[i].url +
-                    ">" +
-                    res.result[i].name +
-                    "</a>" +
-                    "</li>";
+            if (res.code == 200) {
+                localStorage.setItem("token", res.token)
             }
-            html += "</ul>";
-            list.innerHTML = html;
         });
     };
+    get.onclick = function () {
+        ajax("POST", "http://127.0.0.1:3000/getNews", function (res) {
+            var res = JSON.parse(res)
+
+        })
+    }
 
     function ajax(type, url, cb) {
         var xhr = new XMLHttpRequest();
+        var token = localStorage.getItem("token") || ""
         xhr.open("post", url, true);
         xhr.setRequestHeader("Content-Type",
             "application/json;charset=UTF-8"); // koa-bodyparse 不能解析text/plain，改成application/json
+        //xhr.setRequestHeader("Authorization", token);
         xhr.send(
             JSON.stringify({
                 username: "dy",

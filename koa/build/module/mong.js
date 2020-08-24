@@ -126,8 +126,9 @@ var Db = /*#__PURE__*/function () {
 
               case 3:
                 result = this.db.collection(collectionName).findOne(json);
+                return _context3.abrupt("return", result);
 
-              case 4:
+              case 5:
               case "end":
                 return _context3.stop();
             }
