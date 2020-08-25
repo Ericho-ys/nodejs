@@ -29,6 +29,7 @@ export default function registeLogin(router) {
                 ctx.body = {
                     resCode: 1,
                     token,
+                    userId: data._id
                 };
             } catch (error) {
 

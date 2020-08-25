@@ -24,6 +24,9 @@ class Auth {
         })
 
     }
+    decode(token) {
+        return jwt.decode(token)
+    }
     static getInstance() {
         if (!Auth.instance) {
             Auth.instance = new Auth()

@@ -2,7 +2,7 @@ import db from "../module/mong"
 import auth from "../module/auth"
 import {
     vertify
-} from "./middleware/vertify"
+} from "./middleware/index"
 export default function registeMain(router) {
 
     router.post('/getAdminsList', vertify, async (ctx, next) => {

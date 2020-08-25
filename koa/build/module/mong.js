@@ -93,7 +93,7 @@ var Db = /*#__PURE__*/function () {
 
               case 3:
                 result = this.db.collection(collectionName).find(json);
-                return _context2.abrupt("return", result.toArray());
+                return _context2.abrupt("return", Promise.resolve(result.toArray()));
 
               case 5:
               case "end":

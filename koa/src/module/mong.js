@@ -27,7 +27,7 @@ class Db {
     async find(collectionName, json = {}) {
         await Db.getDbInstance.call(this)
         const result = this.db.collection(collectionName).find(json)
-        return result.toArray()
+        return Promise.resolve(result.toArray())
     }
     async findOne(collectionName, json = {}) {
         await Db.getDbInstance.call(this)
