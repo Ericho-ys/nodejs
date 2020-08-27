@@ -24,5 +24,5 @@ app.use((0, _koaBodyparser["default"])());
 app.use((0, _koaCors["default"])());
 router.use("/api", _index["default"]);
 app.use(router.routes()).use(router.allowedMethods());
-app.listen(3000);
+app.listen(3001);
 //# sourceMappingURL=app.js.map

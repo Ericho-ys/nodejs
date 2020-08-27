@@ -27,11 +27,16 @@ class Db {
     async find(collectionName, json = {}) {
         await Db.getDbInstance.call(this)
         const result = this.db.collection(collectionName).find(json)
-        return Promise.resolve(result.toArray())
+        return result.toArray()
     }
     async findOne(collectionName, json = {}) {
         await Db.getDbInstance.call(this)
         const result = this.db.collection(collectionName).findOne(json)
+        return result
+    }
+    async getCount(collectionName, json = {}) {
+        await Db.getDbInstance.call(this)
+        const result = this.db.collection(collectionName).find(json).count()
         return result
     }
     async insertOne(collectionName, doc = {}) {

@@ -12,9 +12,10 @@ export async function vertify(ctx, next) {
     if (token) {
         try {
             const decode = await auth.vertify(token, serect)
+            console.log(decode)
             await next() // 需要增加 await 要不然无法进入下一个中间件
         } catch (error) {
-
+            console.log(error)
             ctx.body = errBody
         }
 

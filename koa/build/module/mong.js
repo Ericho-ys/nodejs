@@ -93,7 +93,7 @@ var Db = /*#__PURE__*/function () {
 
               case 3:
                 result = this.db.collection(collectionName).find(json);
-                return _context2.abrupt("return", Promise.resolve(result.toArray()));
+                return _context2.abrupt("return", result.toArray());
 
               case 5:
               case "end":
@@ -143,64 +143,56 @@ var Db = /*#__PURE__*/function () {
       return findOne;
     }()
   }, {
-    key: "insertOne",
+    key: "getCount",
     value: function () {
-      var _insertOne = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(collectionName) {
-        var doc,
+      var _getCount = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(collectionName) {
+        var json,
+            result,
             _args4 = arguments;
         return _regenerator["default"].wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                doc = _args4.length > 1 && _args4[1] !== undefined ? _args4[1] : {};
-                _context4.prev = 1;
-                _context4.next = 4;
+                json = _args4.length > 1 && _args4[1] !== undefined ? _args4[1] : {};
+                _context4.next = 3;
                 return Db.getDbInstance.call(this);
 
-              case 4:
-                _context4.next = 6;
-                return this.db.collection(collectionName).insertOne(doc);
+              case 3:
+                result = this.db.collection(collectionName).find(json).count();
+                return _context4.abrupt("return", result);
 
-              case 6:
-                return _context4.abrupt("return", _context4.sent);
-
-              case 9:
-                _context4.prev = 9;
-                _context4.t0 = _context4["catch"](1);
-                console.log(_context4.t0);
-
-              case 12:
+              case 5:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, this, [[1, 9]]);
+        }, _callee4, this);
       }));
 
-      function insertOne(_x3) {
-        return _insertOne.apply(this, arguments);
+      function getCount(_x3) {
+        return _getCount.apply(this, arguments);
       }
 
-      return insertOne;
+      return getCount;
     }()
   }, {
-    key: "insertMany",
+    key: "insertOne",
     value: function () {
-      var _insertMany = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(collectionName) {
-        var docs,
+      var _insertOne = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(collectionName) {
+        var doc,
             _args5 = arguments;
         return _regenerator["default"].wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                docs = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : [];
+                doc = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : {};
                 _context5.prev = 1;
                 _context5.next = 4;
                 return Db.getDbInstance.call(this);
 
               case 4:
                 _context5.next = 6;
-                return this.db.collection(collectionName).insertMany(docs);
+                return this.db.collection(collectionName).insertOne(doc);
 
               case 6:
                 return _context5.abrupt("return", _context5.sent);
@@ -218,7 +210,48 @@ var Db = /*#__PURE__*/function () {
         }, _callee5, this, [[1, 9]]);
       }));
 
-      function insertMany(_x4) {
+      function insertOne(_x4) {
+        return _insertOne.apply(this, arguments);
+      }
+
+      return insertOne;
+    }()
+  }, {
+    key: "insertMany",
+    value: function () {
+      var _insertMany = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(collectionName) {
+        var docs,
+            _args6 = arguments;
+        return _regenerator["default"].wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                docs = _args6.length > 1 && _args6[1] !== undefined ? _args6[1] : [];
+                _context6.prev = 1;
+                _context6.next = 4;
+                return Db.getDbInstance.call(this);
+
+              case 4:
+                _context6.next = 6;
+                return this.db.collection(collectionName).insertMany(docs);
+
+              case 6:
+                return _context6.abrupt("return", _context6.sent);
+
+              case 9:
+                _context6.prev = 9;
+                _context6.t0 = _context6["catch"](1);
+                console.log(_context6.t0);
+
+              case 12:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this, [[1, 9]]);
+      }));
+
+      function insertMany(_x5) {
         return _insertMany.apply(this, arguments);
       }
 
@@ -230,25 +263,25 @@ var Db = /*#__PURE__*/function () {
   }], [{
     key: "getDbInstance",
     value: function () {
-      var _getDbInstance = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6() {
-        return _regenerator["default"].wrap(function _callee6$(_context6) {
+      var _getDbInstance = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee7() {
+        return _regenerator["default"].wrap(function _callee7$(_context7) {
           while (1) {
-            switch (_context6.prev = _context6.next) {
+            switch (_context7.prev = _context7.next) {
               case 0:
                 if (this.db) {
-                  _context6.next = 3;
+                  _context7.next = 3;
                   break;
                 }
 
-                _context6.next = 3;
+                _context7.next = 3;
                 return this.connect();
 
               case 3:
               case "end":
-                return _context6.stop();
+                return _context7.stop();
             }
           }
-        }, _callee6, this);
+        }, _callee7, this);
       }));
 
       function getDbInstance() {
