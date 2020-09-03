@@ -259,29 +259,70 @@ var Db = /*#__PURE__*/function () {
     }()
   }, {
     key: "update",
-    value: function update() {}
-  }], [{
-    key: "getDbInstance",
     value: function () {
-      var _getDbInstance = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee7() {
+      var _update = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee7(collectionName) {
+        var oldDoc,
+            newDoc,
+            _args7 = arguments;
         return _regenerator["default"].wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                if (this.db) {
-                  _context7.next = 3;
-                  break;
-                }
+                oldDoc = _args7.length > 1 && _args7[1] !== undefined ? _args7[1] : {};
+                newDoc = _args7.length > 2 && _args7[2] !== undefined ? _args7[2] : {};
+                _context7.prev = 2;
+                _context7.next = 5;
+                return Db.getDbInstance.call(this);
 
-                _context7.next = 3;
-                return this.connect();
+              case 5:
+                _context7.next = 7;
+                return this.db.collection(collectionName).update(oldDoc, {
+                  $set: newDoc
+                });
 
-              case 3:
+              case 7:
+                return _context7.abrupt("return", _context7.sent);
+
+              case 10:
+                _context7.prev = 10;
+                _context7.t0 = _context7["catch"](2);
+
+              case 12:
               case "end":
                 return _context7.stop();
             }
           }
-        }, _callee7, this);
+        }, _callee7, this, [[2, 10]]);
+      }));
+
+      function update(_x6) {
+        return _update.apply(this, arguments);
+      }
+
+      return update;
+    }()
+  }], [{
+    key: "getDbInstance",
+    value: function () {
+      var _getDbInstance = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee8() {
+        return _regenerator["default"].wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                if (this.db) {
+                  _context8.next = 3;
+                  break;
+                }
+
+                _context8.next = 3;
+                return this.connect();
+
+              case 3:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8, this);
       }));
 
       function getDbInstance() {

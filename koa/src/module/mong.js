@@ -55,7 +55,16 @@ class Db {
             console.log(error)
         }
     }
-    update() {}
+    async update(collectionName, oldDoc = {}, newDoc = {}) {
+        try {
+            await Db.getDbInstance.call(this)
+            return await this.db.collection(collectionName).update(oldDoc, {
+                $set: newDoc
+            })
+        } catch (error) {
+
+        }
+    }
     static async getDbInstance() {
         if (!this.db) {
             await this.connect()

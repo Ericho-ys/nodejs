@@ -5,6 +5,9 @@ import {
     serect,
     salt
 } from "../module/authConfig.js"
+import {
+    datebaseName
+} from "../module/config"
 
 export default function registeLogin(router) {
     router.post('/login', async (ctx) => {
@@ -26,10 +29,12 @@ export default function registeLogin(router) {
                     serect, {
                         expiresIn: "2h",
                     })
+                delete data.password
+
                 ctx.body = {
                     resCode: 1,
                     token,
-                    userId: data._id
+                    user: data
                 };
             } catch (error) {
 
