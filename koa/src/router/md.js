@@ -1,3 +1,6 @@
+import {
+    datebaseName
+} from "../module/config"
 import db from "../module/mong"
 import {
     vertify,
@@ -11,8 +14,8 @@ export default function registeMd(router) {
             title: params.title,
             type: params.type,
             top: params.top,
+            createTime: new Date().getTime()
         })
-        console.log(result.insertedId)
         await db.insertOne('mddetail', {
             mdId: result.insertedId.toString(),
             ...params

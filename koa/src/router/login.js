@@ -30,7 +30,6 @@ export default function registeLogin(router) {
                         expiresIn: "2h",
                     })
                 delete data.password
-
                 ctx.body = {
                     resCode: 1,
                     token,
