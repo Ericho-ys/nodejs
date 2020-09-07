@@ -81,6 +81,9 @@ var Db = /*#__PURE__*/function () {
     value: function () {
       var _find = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(collectionName) {
         var json,
+            sortDoc,
+            pageNum,
+            pageSize,
             result,
             _args2 = arguments;
         return _regenerator["default"].wrap(function _callee2$(_context2) {
@@ -88,14 +91,17 @@ var Db = /*#__PURE__*/function () {
             switch (_context2.prev = _context2.next) {
               case 0:
                 json = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : {};
-                _context2.next = 3;
+                sortDoc = _args2.length > 2 && _args2[2] !== undefined ? _args2[2] : {};
+                pageNum = _args2.length > 3 && _args2[3] !== undefined ? _args2[3] : 1;
+                pageSize = _args2.length > 4 && _args2[4] !== undefined ? _args2[4] : 10;
+                _context2.next = 6;
                 return Db.getDbInstance.call(this);
 
-              case 3:
-                result = this.db.collection(collectionName).find(json);
+              case 6:
+                result = this.db.collection(collectionName).find(json).sort(sortDoc).skip((pageNum - 1) * 10).limit(pageSize);
                 return _context2.abrupt("return", result.toArray());
 
-              case 5:
+              case 8:
               case "end":
                 return _context2.stop();
             }

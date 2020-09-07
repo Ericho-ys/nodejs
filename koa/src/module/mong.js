@@ -24,9 +24,9 @@ class Db {
             console.log(error)
         }
     }
-    async find(collectionName, json = {}) {
+    async find(collectionName, json = {}, sortDoc = {}, pageNum = 1, pageSize = 10) {
         await Db.getDbInstance.call(this)
-        const result = this.db.collection(collectionName).find(json)
+        const result = this.db.collection(collectionName).find(json).sort(sortDoc).skip((pageNum - 1) * 10).limit(pageSize)
         return result.toArray()
     }
     async findOne(collectionName, json = {}) {

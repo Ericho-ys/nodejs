@@ -14,6 +14,7 @@ export default function registeMd(router) {
             title: params.title,
             type: params.type,
             top: params.top,
+            setTopTime: params.setTopTime,
             createTime: new Date().getTime()
         })
         await db.insertOne('mddetail', {
@@ -28,9 +29,14 @@ export default function registeMd(router) {
     router.post('/getMdList', vertify, async (ctx, next) => {
         const params = ctx.request.body
         try {
-            const result = await db.find('mdlist', {
+            let queryDoc = {
                 "userId": params.userId
-            })
+            }
+            const result = await db.find('mdlist', queryDoc, {
+                "setTopTime": -1,
+                "createTime": 1,
+
+            }, params.pageNum, params.pageSize)
             ctx.body = {
                 resCode: 1,
                 result
