@@ -5,12 +5,19 @@ import db from "../module/mong"
 import {
     vertify,
 } from "./middleware/index"
+import {
+    ObjectId
+} from "mongodb"
 export default function registeMd(router) {
 
     router.post('/sendMd', vertify, async (ctx, next) => {
         const params = ctx.request.body
+        const person = await db.findOne('person', {
+            "_id": new ObjectId(params.createrId)
+        })
         const result = await db.insertOne('mdlist', {
-            userId: params.userId,
+            createrName: person.username,
+            createrId: params.createrId,
             title: params.title,
             type: params.type,
             top: params.top,
@@ -19,7 +26,8 @@ export default function registeMd(router) {
         })
         await db.insertOne('mddetail', {
             mdId: result.insertedId.toString(),
-            ...params
+            ...params,
+            createrName: person.username
         })
         ctx.body = {
             resCode: 1
@@ -29,13 +37,13 @@ export default function registeMd(router) {
     router.post('/getMdList', vertify, async (ctx, next) => {
         const params = ctx.request.body
         try {
-            let queryDoc = {
-                "userId": params.userId
+            let queryDoc = {}
+            if (params.type !== undefined) {
+                queryDoc.type = params.type
             }
             const result = await db.find('mdlist', queryDoc, {
                 "setTopTime": -1,
                 "createTime": 1,
-
             }, params.pageNum, params.pageSize)
             ctx.body = {
                 resCode: 1,
@@ -50,7 +58,6 @@ export default function registeMd(router) {
         const params = ctx.request.body
         try {
             const result = await db.find('mddetail', {
-                "userId": params.userId,
                 "mdId": params.mdId
             })
             ctx.body = {
