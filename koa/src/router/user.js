@@ -14,7 +14,6 @@ export default function registeUser(router) {
             const result = await db.findOne('person', {
                 "_id": new ObjectId(params.userId)
             })
-            console.log(result)
             const users = await db.find('person', {
                 "type": {
                     $gte: result.type
@@ -51,6 +50,19 @@ export default function registeUser(router) {
             await db.update('person', {
                 "_id": new ObjectId(params.userId)
             }, params)
+            ctx.body = {
+                resCode: 1,
+                result: "ok"
+            }
+        } catch (error) {
+
+        }
+    })
+
+    router.post('/createUser', vertify, async (ctx, next) => {
+        const params = ctx.request.body
+        try {
+            await db.insertOne('person', params)
             ctx.body = {
                 resCode: 1,
                 result: "ok"
