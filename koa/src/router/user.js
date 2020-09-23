@@ -16,7 +16,7 @@ export default function registeUser(router) {
             })
             const users = await db.find('person', {
                 "type": {
-                    $gte: result.type
+                    $gt: result.type
                 }
             })
             ctx.body = {
