@@ -367,4 +367,3 @@ var _default = db; // const db = Db.getInstance();
 // }, 10000)
 
 exports["default"] = _default;
-//# sourceMappingURL=mong.js.map

@@ -1,7 +1,7 @@
 import Koa from "koa";
 import Router from "koa-router";
 
-import staticServer from "koa-static";
+//import staticServer from "koa-static";
 import {
   resolve
 } from "path";
@@ -12,7 +12,7 @@ let app = new Koa();
 const router = new Router();
 
 // 中间件 洋葱执行机制
-app.use(staticServer(resolve(__dirname, "../static")));
+// app.use(staticServer(resolve(__dirname, "../static")));
 app.use(bodyParser());
 app.use(cors());
 

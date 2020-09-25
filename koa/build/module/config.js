@@ -8,4 +8,3 @@ var url = "mongodb://localhost:27017";
 exports.url = url;
 var datebaseName = "nodeDev";
 exports.datebaseName = datebaseName;
-//# sourceMappingURL=config.js.map
