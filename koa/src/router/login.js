@@ -14,9 +14,9 @@ export default function registeLogin(router) {
         const md5 = crypto.createHash('md5');
         const params = ctx.request.body
         const passwordStr = params.password + ":" + salt
-
         md5.update(passwordStr)
         const passwordMd5 = md5.digest('hex')
+        console.log(passwordMd5)
         const data = await db.findOne("person", {
             username: params.username,
         });
