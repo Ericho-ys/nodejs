@@ -1,22 +1,19 @@
 import db from "../module/mong"
 import auth from "../module/auth"
-import crypto from "crypto"
+
 import {
     serect,
-    salt
 } from "../module/authConfig.js"
 import {
     datebaseName
 } from "../module/config"
-
+import {
+    createCrypto
+} from "../module/utils"
 export default function registeLogin(router) {
     router.post('/login', async (ctx) => {
-        const md5 = crypto.createHash('md5');
         const params = ctx.request.body
-        const passwordStr = params.password + ":" + salt
-        md5.update(passwordStr)
-        const passwordMd5 = md5.digest('hex')
-        console.log(passwordMd5)
+        const passwordMd5 = createCrypto(params.password)
         const data = await db.findOne("person", {
             username: params.username,
         });

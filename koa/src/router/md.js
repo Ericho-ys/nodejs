@@ -6,14 +6,14 @@ import {
     vertify,
 } from "./middleware/index"
 import {
-    ObjectId
-} from "mongodb"
+    returnObjectId
+} from "../module/utils"
 export default function registeMd(router) {
 
     router.post('/sendMd', vertify, async (ctx, next) => {
         const params = ctx.request.body
         const person = await db.findOne('person', {
-            "_id": new ObjectId(params.createrId)
+            "_id": returnObjectId(params.createrId)
         })
         const result = await db.insertOne('mdlist', {
             createrName: person.username,

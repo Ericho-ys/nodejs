@@ -20,7 +20,6 @@ export default function registeUploader(router) {
 
         const options = {
             scope: qiuniuConfig.Bucket,
-            deleteAfterDays: 1,
             returnBody: '{"key":"$(key)","hash":"$(etag)","fsize":$(fsize),"bucket":"$(bucket)","name":"$(x:name)"}'
         };
         const putPolicy = new qiniu.rs.PutPolicy(options);

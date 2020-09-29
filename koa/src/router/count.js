@@ -8,7 +8,6 @@ let mdTypeCount = types.reduce((pre, cur, index) => {
         type: index,
         value: cur
     }
-
     return [...pre, temp]
 }, [])
 export default function registeCount(router) {
